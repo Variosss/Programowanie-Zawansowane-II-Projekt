@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: currency_postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: currencydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+    ports:
+      - "5432:5432"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+
+    container_name: currency_backend
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=currencydb;Username=postgres;Password=postgres
+
+    ports:
+      - "5000:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+
+    container_name: currency_frontend
+
+    depends_on:
+      - backend
+
+    ports:
+      - "4200:80"
+
+volumes:
+  postgres_data:

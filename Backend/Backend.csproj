@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.16">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="BackendTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="BackendTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="BackendTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="BackendTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="BackendTests\obj\Backend.Tests.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="BackendTests\obj\BackendTests.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="BackendTests\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="BackendTests\obj\project.packagespec.json" />
+    </ItemGroup>
+</Project>

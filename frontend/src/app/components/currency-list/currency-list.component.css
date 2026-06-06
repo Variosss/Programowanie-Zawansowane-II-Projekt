@@ -1,0 +1,29 @@
+.container {
+    padding: 30px;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  input {
+    padding: 8px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }

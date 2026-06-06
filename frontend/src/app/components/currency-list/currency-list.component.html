@@ -1,0 +1,62 @@
+<div class="container">
+
+    <h2>Kursy walut NBP</h2>
+  
+    <button
+      class="btn"
+      (click)="fetchData()">
+  
+      Pobierz dane z NBP
+    </button>
+  
+    <div class="filters">
+  
+      <input placeholder="Rok"
+  [(ngModel)]="selectedYear">
+
+<input placeholder="Miesiąc"
+  [(ngModel)]="selectedMonth">
+
+<input placeholder="Dzień"
+  [(ngModel)]="selectedDay">
+    </div>
+  
+    <table>
+  
+      <thead>
+        <tr>
+          <th>Kod</th>
+          <th>Waluta</th>
+          <th>Kurs</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+  
+        <tr
+        *ngFor="let currency of currencies">
+  
+          <td>
+            {{currency.currencyCode}}
+          </td>
+  
+          <td>
+            {{currency.currencyName}}
+          </td>
+  
+          <td>
+            {{currency.rate}}
+          </td>
+  
+          <td>
+            {{currency.effectiveDate}}
+          </td>
+  
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  
+  </div>
